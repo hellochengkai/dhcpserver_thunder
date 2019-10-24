@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # interface to use
-interface='wlp3s0'
+interface='enp3s0'
 
 # server ip configs
 server_id=`ifconfig $interface | grep 'inet[^6]' | awk '{print $2}'`
@@ -10,8 +10,8 @@ gateway=`route -n | grep $interface | grep UG | awk '{ print $2}'`
 broadcast=`ifconfig $interface | grep 'broadcast' | awk '{print $6}'`
 
 # address pool
-first='192.168.1.20'
-last='192.168.1.25'
+first='192.168.10.100'
+last='192.168.10.200'
 
 # DHCP options (timers, in seconds)
 pending_time=30

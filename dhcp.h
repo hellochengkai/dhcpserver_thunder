@@ -4,8 +4,8 @@
 #include <stdint.h>
 
 enum ports {
-    BOOTPS = 67,
-    BOOTPC = 68
+    BOOTPS = 16667,
+    BOOTPC = 16668
 };
 
 enum op_types {
