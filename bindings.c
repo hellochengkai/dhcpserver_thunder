@@ -81,7 +81,6 @@ search_binding (binding_list *list, uint8_t *cident, uint8_t cident_len,
 	if((binding->is_static == is_static || is_static == STATIC_OR_DYNAMIC) &&
 	   binding->cident_len == cident_len &&
 	   memcmp(binding->cident, cident, cident_len) == 0) {
-
 	    if(status == 0)
 		return binding;
 	    else if(status == binding->status)

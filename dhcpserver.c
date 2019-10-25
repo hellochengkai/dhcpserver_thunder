@@ -476,7 +476,6 @@ void message_dispatcher(int s, struct sockaddr_in server_sock)
                  inet_ntoa(client_sock.sin_addr), ntohs(client_sock.sin_port));
         if (request.hdr.op != BOOTREQUEST)
         {
-            log_info("aaaa\n", 0);
             continue;
         }
 
@@ -486,18 +485,18 @@ void message_dispatcher(int s, struct sockaddr_in server_sock)
                       inet_ntoa(client_sock.sin_addr), ntohs(client_sock.sin_port));
             continue;
         }
-        log_info("bbbb type %d\n", type);
         init_reply(&request, &reply);
-        log_info("ccccc\n", 0);
-
+        printf("type === , %d\n",type);
         switch (type)
         {
 
         case DHCP_DISCOVER:
+
             type = serve_dhcp_discover(&request, &reply);
             break;
 
         case DHCP_REQUEST:
+            type = serve_dhcp_discover(&request, &reply);
             type = serve_dhcp_request(&request, &reply);
             break;
 
@@ -518,15 +517,12 @@ void message_dispatcher(int s, struct sockaddr_in server_sock)
                    inet_ntoa(client_sock.sin_addr), ntohs(client_sock.sin_port));
             break;
         }
-        log_info("ddddd\n", 0);
 
         if (type != 0)
             send_dhcp_reply(s, &client_sock, &reply);
-        log_info("eeeee\n", 0);
 
         delete_option_list(&request.opts);
         delete_option_list(&reply.opts);
-        log_info("fffff\n", 0);
     }
 }
 
